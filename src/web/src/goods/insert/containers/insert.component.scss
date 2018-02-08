@@ -1,0 +1,62 @@
+.goods-container {
+  overflow-y: auto;
+  height: 100%;
+
+  .goods-insert-form {
+
+    @media screen and (min-width: 680px) {
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      left: 50%;
+      top: 15%;
+      -webkit-transform: translate(-50%, -15%);
+      transform: translate(-50%, -15%);
+    }
+
+    @media screen and (max-width: 679px) {
+      padding: 15px 10px;
+    }
+
+    .goods-form-full-width {
+      width: 100%;
+    }
+
+    .goods-form-submit {
+      margin-top: 10px;
+    }
+
+    .goods-upload {
+      text-align: right;
+
+      .upload {
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &[disabled] {
+          background: #AAA;
+        }
+      }
+
+      #new-post-input {
+        display: none;
+      }
+    }
+
+    .preview {
+      width: 100%;
+      text-align: center;
+
+      img {
+        height: 200px;
+      }
+    }
+
+  }
+}
