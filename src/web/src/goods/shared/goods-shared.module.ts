@@ -3,7 +3,8 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatProgressBarModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -16,6 +17,7 @@ import * as fromContainers from './components';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressBarModule,
     FlexLayoutModule
   ],
   declarations: [...fromContainers.Components],

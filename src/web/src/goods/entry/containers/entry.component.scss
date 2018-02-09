@@ -2,7 +2,7 @@
   overflow-y: auto;
   height: 100%;
 
-  .goods-insert-form {
+  .goods-entry-form {
 
     @media screen and (min-width: 680px) {
       max-width: 500px;
@@ -49,13 +49,12 @@
       }
     }
 
-    .preview {
+    goods-file-upload {
       width: 100%;
-      text-align: center;
+    }
 
-      img {
-        height: 200px;
-      }
+    .goods-file-upload-list {
+      margin-top: 5px;
     }
 
   }

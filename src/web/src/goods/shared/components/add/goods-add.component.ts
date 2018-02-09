@@ -7,17 +7,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
     <mat-icon aria-label="add button">add</mat-icon>
   </button>
   `,
-  styleUrls: [
-    './goods-add.component.scss'
-  ]
+  styleUrls: ['./goods-add.component.scss']
 })
 export class GoodsAddComponent {
-
-  @Output()
-  add: EventEmitter<void> = new EventEmitter<void>();
+  @Output() add: EventEmitter<void> = new EventEmitter<void>();
 
   onAdd(): void {
     this.add.emit();
   }
-
 }

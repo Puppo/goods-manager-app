@@ -18,7 +18,12 @@ const ROUTES: Route[] = [
       },
       {
         path: 'insert',
-        loadChildren: './insert/insert.module#GoodsInsertModule',
+        loadChildren: './entry/entry.module#GoodsEntryModule',
+        canActivate: [fromAuth.AuthGuard]
+      },
+      {
+        path: ':id',
+        loadChildren: './entry/entry.module#GoodsEntryModule',
         canActivate: [fromAuth.AuthGuard]
       }
     ]

@@ -1,4 +1,10 @@
-import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'goods-card',
@@ -23,20 +29,15 @@ import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angu
     </mat-card-actions>
   </mat-card>
   `,
-  styleUrls: [
-    './goods-card.component.scss'
-  ],
+  styleUrls: ['./goods-card.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class GoodsCardComponent {
-  @Input()
-  item: any;
+  @Input() item: any;
 
-  @Output()
-  edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() edit: EventEmitter<any> = new EventEmitter<any>();
 
   onEdit(): void {
-    this.edit.emit(this.item);
+    this.edit.emit({ id: 1000});
   }
-
 }

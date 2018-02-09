@@ -8,7 +8,8 @@ import {
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatListModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -17,7 +18,7 @@ import { GoodsSharedModule } from '../shared';
 const ROUTES: Route[] = [
   {
     path: '',
-    component: fromContainers.GoodsInsertComponent
+    component: fromContainers.GoodsEntryComponent
   }
 ];
 
@@ -31,10 +32,11 @@ const ROUTES: Route[] = [
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
     FlexLayoutModule,
     GoodsSharedModule
   ],
   declarations: [...fromContainers.Containers],
   exports: [...fromContainers.Containers]
 })
-export class GoodsInsertModule {}
+export class GoodsEntryModule {}

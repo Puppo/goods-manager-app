@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
       </goods-toolbar>
 
       <goods-section class="content">
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
-        <goods-card></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
+        <goods-card (edit)="onEdit($event)"></goods-card>
         <goods-add (add)="onAdd()"></goods-add>
       </goods-section>
     </goods-container>
@@ -33,6 +33,10 @@ export class DashboardComponent {
 
   onAdd(): void {
     this.router.navigate(['/goods/insert']);
+  }
+
+  onEdit(goods: any): void {
+    this.router.navigate(['/goods', goods.id]);
   }
 
 }
