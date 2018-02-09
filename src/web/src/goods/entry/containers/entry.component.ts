@@ -1,15 +1,22 @@
-import { Component, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../../auth/shared/services/auth';
+
 @Component({
   selector: 'goods-entry',
   template: `
   <goods-container>
-    <goods-toolbar>
+    <goods-toolbar (exitApp)="onExitApp()">
       Goods
     </goods-toolbar>
 
@@ -63,16 +70,21 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class GoodsEntryComponent {
-  blobFiles: Blob[];
+  blobFiles: File[];
 
   @ViewChild('newPostInput') newPostInput: ElementRef;
 
-  constructor(protected router: Router) {
+  constructor(protected router: Router, protected auth: AuthService) {
     this.blobFiles = [];
   }
 
   onTapList(): void {
     this.router.navigate(['goods']);
+  }
+
+  onExitApp(): void {
+    this.auth.signOut();
+    this.router.navigate(['auth']);
   }
 
   triggerInputFileClick(evt) {
@@ -95,7 +107,7 @@ export class GoodsEntryComponent {
       element.value = '';
     }
   }
-  removeFile(file: Blob) {
+  removeFile(file: File) {
     this.blobFiles = this.blobFiles.filter(f => f !== file);
   }
 

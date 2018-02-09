@@ -33,7 +33,7 @@ import { map, tap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class GoodsFileUploadComponent implements OnInit {
-  @Input() file: Blob;
+  @Input() file: File;
   @Output() complete: EventEmitter<any> = new EventEmitter<any>();
   @Output() error: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();

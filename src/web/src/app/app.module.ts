@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Route, RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatIconModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -31,6 +32,7 @@ const ROUTES: Route[] = [
     BrowserAnimationsModule,
     HttpClientModule,
     MatIconModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     RouterModule.forRoot(ROUTES),
 
     AngularFireModule.initializeApp(environment.firebase),

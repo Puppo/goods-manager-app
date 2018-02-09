@@ -1,11 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../../../auth/shared/services/auth';
+
 @Component({
   selector: 'goods-dashboard',
   template: `
     <goods-container class="goods-dashboard">
-      <goods-toolbar class="header">
+      <goods-toolbar class="header" (exitApp)="onExitApp()">
         Goods Manager Dashboard
       </goods-toolbar>
 
@@ -29,7 +31,14 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  constructor(protected router: Router) {}
+  constructor(
+    protected router: Router,
+    protected auth: AuthService) {}
+
+  onExitApp(): void {
+    this.auth.signOut();
+    this.router.navigate(['auth']);
+  }
 
   onAdd(): void {
     this.router.navigate(['/goods/insert']);

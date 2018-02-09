@@ -8,8 +8,7 @@ import {
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import * as fromContainers from './components';
-// import * as fromServices from './services';
+import * as fromComponents from './components';
 
 @NgModule({
   imports: [
@@ -20,8 +19,8 @@ import * as fromContainers from './components';
     MatProgressBarModule,
     FlexLayoutModule
   ],
-  declarations: [...fromContainers.Components],
-  exports: [...fromContainers.Components]
+  declarations: [...fromComponents.Components],
+  exports: [...fromComponents.Components]
 })
 export class GoodsSharedModule {
   static forRoot(): ModuleWithProviders {
