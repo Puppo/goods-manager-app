@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, ViewChild, ElementRef } from '@angular/co
 import { Observable } from 'rxjs/Observable';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'goods-entry',
@@ -53,6 +54,9 @@ import { map } from 'rxjs/operators';
         Insert
       </button>
     </form>
+
+    <goods-go-list (goList)="onTapList()">
+    </goods-go-list>
   </goods-container>
   `,
   styleUrls: ['./entry.component.scss'],
@@ -63,8 +67,12 @@ export class GoodsEntryComponent {
 
   @ViewChild('newPostInput') newPostInput: ElementRef;
 
-  constructor() {
+  constructor(protected router: Router) {
     this.blobFiles = [];
+  }
+
+  onTapList(): void {
+    this.router.navigate(['goods']);
   }
 
   triggerInputFileClick(evt) {

@@ -29,7 +29,7 @@ import { map, tap } from 'rxjs/operators';
       </mat-progress-bar>
     </div>
   `,
-  styleUrls: ['./file-upload.component.scss'],
+  styleUrls: ['./goods-file-upload.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class GoodsFileUploadComponent implements OnInit {
