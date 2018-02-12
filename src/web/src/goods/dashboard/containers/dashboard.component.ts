@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { AuthService } from '../../../auth/shared/services/auth';
+import { Store } from '@ngrx/store';
+import * as fromAuth from '../../../auth/store';
+import * as fromRoute from '../../../app/store';
 
 @Component({
   selector: 'goods-dashboard',
@@ -32,20 +33,26 @@ import { AuthService } from '../../../auth/shared/services/auth';
 export class DashboardComponent {
 
   constructor(
-    protected router: Router,
-    protected auth: AuthService) {}
+    protected store: Store<fromAuth.IAuthState>) {}
 
   onExitApp(): void {
-    this.auth.signOut();
-    this.router.navigate(['auth']);
+    this.store.dispatch(new fromAuth.AuthLogout());
   }
 
   onAdd(): void {
-    this.router.navigate(['/goods/insert']);
+    this.store.dispatch(
+      new fromRoute.Go({
+        path: ['/goods/insert']
+      })
+    );
   }
 
   onEdit(goods: any): void {
-    this.router.navigate(['/goods', goods.id]);
+    this.store.dispatch(
+      new fromRoute.Go({
+        path: ['/goods', goods.id]
+      })
+    );
   }
 
 }

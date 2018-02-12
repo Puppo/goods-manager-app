@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/services';
+
+import { Store } from '@ngrx/store';
+import * as fromAuth from '../../store';
+
+import { AuthProviders } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'auth-login',
@@ -9,8 +13,7 @@ import { AuthService } from '../../shared/services';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    protected auth: AuthService,
-    protected router: Router
+    protected store: Store<fromAuth.IAuthState>
   ) {
   }
 
@@ -21,22 +24,15 @@ export class LoginComponent implements OnInit {
     // this.layoutService.handleShowDetails(false);
   }
 
-  async signInWithGoogle(): Promise<void> {
-    await this.auth.signInWithGoogle();
-    this.postSignIn();
+  signInWithGoogle(): void {
+    this.store.dispatch(new fromAuth.AuthLogin(AuthProviders.Google));
   }
 
-  async signInWithTwitter(): Promise<void> {
-    await this.auth.signInWithTwitter();
-    this.postSignIn();
+  signInWithTwitter(): void {
+    this.store.dispatch(new fromAuth.AuthLogin(AuthProviders.Twitter));
   }
 
-  async signInWithFacebook(): Promise<void> {
-    await this.auth.signInWithFacebook();
-    this.postSignIn();
-  }
-
-  private postSignIn(): void {
-    this.router.navigate(['/goods']);
+  signInWithFacebook(): void {
+    this.store.dispatch(new fromAuth.AuthLogin(AuthProviders.Facebook));
   }
 }

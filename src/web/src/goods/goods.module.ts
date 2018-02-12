@@ -13,17 +13,17 @@ const ROUTES: Route[] = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#GoodsDashboardModule',
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
         canActivate: [fromAuth.AuthGuard]
       },
       {
         path: 'insert',
-        loadChildren: './entry/entry.module#GoodsEntryModule',
+        loadChildren: './entry/entry.module#EntryModule',
         canActivate: [fromAuth.AuthGuard]
       },
       {
         path: ':id',
-        loadChildren: './entry/entry.module#GoodsEntryModule',
+        loadChildren: './entry/entry.module#EntryModule',
         canActivate: [fromAuth.AuthGuard]
       }
     ]

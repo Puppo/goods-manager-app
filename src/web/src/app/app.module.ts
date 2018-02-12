@@ -14,25 +14,47 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { environment } from '../environments/environment';
 
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer
+} from '@ngrx/router-store';
+import { StoreModule, MetaReducer, ActionReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeFreeze } from 'ngrx-store-freeze';
+// import { localStorageSync } from 'ngrx-store-localstorage';
+
 import { AuthModule } from '../auth';
 import { GoodsModule } from '../goods';
 
-import { AppComponent } from './app.component';
+import * as fromContainers from './containers';
+import { reducers, effects, CustomSerializer } from './store';
 
-const ROUTES: Route[] = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' }
-];
+const ROUTES: Route[] = [{ path: '', pathMatch: 'full', redirectTo: 'auth' }];
+
+// export function localStorageSyncReducer(
+//   reducer: ActionReducer<any>
+// ): ActionReducer<any> {
+//   return localStorageSync({
+//     keys: ['auth', 'todo'],
+//     rehydrate: true
+//   })(reducer);
+// }
+
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [...fromContainers.Containers],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatIconModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    }),
     RouterModule.forRoot(ROUTES),
 
     AngularFireModule.initializeApp(environment.firebase),
@@ -43,10 +65,15 @@ const ROUTES: Route[] = [
 
     FlexLayoutModule,
 
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+
     AuthModule,
     GoodsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
+  bootstrap: [...fromContainers.Containers]
 })
-export class AppModule { }
+export class AppModule {}

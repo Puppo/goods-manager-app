@@ -39,4 +39,4 @@ const ROUTES: Route[] = [
   declarations: [...fromContainers.Containers],
   exports: [...fromContainers.Containers]
 })
-export class GoodsEntryModule {}
+export class EntryModule {}

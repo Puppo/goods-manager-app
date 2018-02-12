@@ -25,4 +25,4 @@ const ROUTES: Route[] = [{
     ...fromContainers.Containers
   ]
 })
-export class AuthLoginModule { }
+export class LoginModule { }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -17,28 +18,9 @@ export enum AuthProviders {
 
 @Injectable()
 export class AuthService {
-  public user: firebase.User;
-  public authState$: Observable<firebase.User>;
+  constructor(protected afAuth: AngularFireAuth) {}
 
-  constructor(protected afAuth: AngularFireAuth) {
-    this.user = null;
-    this.authState$ = afAuth.authState;
-
-    this.authState$.subscribe((user: firebase.User) => {
-      this.user = user;
-      console.log('authState$ changed', this.user);
-    });
-  }
-
-  get authenticated(): boolean {
-    return this.user !== null;
-  }
-
-  get id(): string {
-    return this.authenticated ? this.user.uid : null;
-  }
-
-  signIn(providerId: number): Promise<void> {
+  signIn(providerId: number): Observable<firebase.auth.UserCredential> {
     let provider: firebase.auth.AuthProvider = null;
 
     switch (providerId) {
@@ -56,39 +38,7 @@ export class AuthService {
         break;
     }
 
-    return firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result: firebase.auth.UserCredential) => {
-        // The signed-in user info.
-        this.user = result.user;
-      })
-      .catch((error: FirebaseError) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        if (
-          errorCode === 'authService/account-exists-with-different-credential'
-        ) {
-          alert('You have signed up with a different provider for that email.');
-          // Handle linking here if your app allows it.
-        } else {
-        }
-        console.error('ERROR @ AuthService#signIn() :', error);
-      });
-  }
-
-  signInWithTwitter(): Promise<void> {
-    return this.signIn(AuthProviders.Twitter);
-  }
-
-  signInWithFacebook(): Promise<void> {
-    return this.signIn(AuthProviders.Facebook);
-  }
-
-  signInWithGoogle(): Promise<void> {
-    return this.signIn(AuthProviders.Google);
+    return fromPromise(this.afAuth.auth.signInWithPopup(provider));
   }
 
   signOut(): void {

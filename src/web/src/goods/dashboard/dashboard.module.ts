@@ -23,4 +23,4 @@ const ROUTES: Route[] = [{
     ...fromContainers.Containers
   ]
 })
-export class GoodsDashboardModule { }
+export class DashboardModule { }
