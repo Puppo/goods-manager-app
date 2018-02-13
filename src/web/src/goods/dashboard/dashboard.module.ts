@@ -17,10 +17,10 @@ const ROUTES: Route[] = [{
     GoodsSharedModule
   ],
   declarations: [
-    ...fromContainers.Containers
+    ...fromContainers.containers
   ],
   exports: [
-    ...fromContainers.Containers
+    ...fromContainers.containers
   ]
 })
 export class DashboardModule { }

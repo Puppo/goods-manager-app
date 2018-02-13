@@ -18,7 +18,7 @@ export const getAuthIsAuthenticatedSelector = createSelector(
   fromLogin.getAuthIsAuthenticated
 );
 
-export const getAuthUserIdSelector = createSelector(
+export const  getAuthUserIdSelector = createSelector(
   getAuthStateSelector,
   fromLogin.getAuthUserId
 );

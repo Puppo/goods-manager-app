@@ -14,7 +14,7 @@ export * from './file-upload';
 export * from './section';
 export * from './toolbar';
 
-export const Components: any[] = [
+export const components: any[] = [
   GoodsAddComponent,
   GoodsGoListComponent,
   GoodsCardComponent,

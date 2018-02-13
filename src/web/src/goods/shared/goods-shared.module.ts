@@ -9,6 +9,7 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import * as fromComponents from './components';
+import * as fromServices from './services';
 
 @NgModule({
   imports: [
@@ -19,14 +20,14 @@ import * as fromComponents from './components';
     MatProgressBarModule,
     FlexLayoutModule
   ],
-  declarations: [...fromComponents.Components],
-  exports: [...fromComponents.Components]
+  declarations: [...fromComponents.components],
+  exports: [...fromComponents.components]
 })
 export class GoodsSharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: GoodsSharedModule,
-      providers: []
+      providers: [...fromServices.services]
     };
   }
 }

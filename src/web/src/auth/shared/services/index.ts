@@ -2,4 +2,4 @@ import { AuthService } from './auth';
 
 export * from './auth';
 
-export const Services: any[] = [AuthService];
+export const services: any[] = [AuthService];

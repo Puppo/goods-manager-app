@@ -2,6 +2,6 @@ import { LoginComponent } from './login.component';
 
 export * from './login.component';
 
-export const Containers: any[] = [
+export const containers: any[] = [
   LoginComponent
 ];

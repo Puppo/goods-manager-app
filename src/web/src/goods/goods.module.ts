@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import * as fromAuth from '../auth';
 
 import * as fromShared from './shared';
+import { reducers, effects } from './store';
 
 const ROUTES: Route[] = [
   {
@@ -33,8 +38,11 @@ const ROUTES: Route[] = [
 @NgModule({
   imports: [
     CommonModule,
+    MatSnackBarModule,
     RouterModule.forChild(ROUTES),
-    fromShared.GoodsSharedModule.forRoot()
+    StoreModule.forFeature('stock', reducers),
+    EffectsModule.forFeature(effects),
+    fromShared.GoodsSharedModule.forRoot(),
   ]
 })
-export class GoodsModule { }
+export class GoodsModule {}

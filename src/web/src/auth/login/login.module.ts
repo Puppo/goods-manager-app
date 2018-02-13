@@ -19,10 +19,10 @@ const ROUTES: Route[] = [{
     MatIconModule
   ],
   declarations: [
-    ...fromContainers.Containers
+    ...fromContainers.containers
   ],
   exports: [
-    ...fromContainers.Containers
+    ...fromContainers.containers
   ]
 })
 export class LoginModule { }

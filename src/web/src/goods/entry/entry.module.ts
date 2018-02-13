@@ -36,7 +36,7 @@ const ROUTES: Route[] = [
     FlexLayoutModule,
     GoodsSharedModule
   ],
-  declarations: [...fromContainers.Containers],
-  exports: [...fromContainers.Containers]
+  declarations: [...fromContainers.containers],
+  exports: [...fromContainers.containers]
 })
 export class EntryModule {}

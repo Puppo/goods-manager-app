@@ -105,5 +105,5 @@ export function getAuthIsAuthenticated(state: ILoginState): boolean {
 }
 
 export function getAuthUserId(state: ILoginState): string {
-  return state.user.uid;
+  return !!state && !!state.user ? state.user.uid : null;
 }

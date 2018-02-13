@@ -4,7 +4,7 @@ import {UnauthGuard} from './unauth.guards';
 export * from './auth.guards';
 export * from './unauth.guards';
 
-export const Guards: any[] = [
+export const guards: any[] = [
   AuthGuard,
   UnauthGuard
 ];
